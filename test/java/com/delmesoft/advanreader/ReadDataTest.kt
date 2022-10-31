@@ -30,7 +30,6 @@
 package com.delmesoft.advanreader
 
 import com.delmesoft.advanreader.AdvanReader.MemoryBank
-import com.delmesoft.advanreader.ReaderException
 import org.junit.Test
 import java.util.*
 
