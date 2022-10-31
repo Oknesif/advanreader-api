@@ -27,63 +27,41 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package com.delmesoft.advanreader.op;
+package com.delmesoft.advanreader
 
-import com.delmesoft.advanreader.AdvanReader;
-import com.delmesoft.advanreader.Device;
-import com.delmesoft.advanreader.Read;
-import com.delmesoft.advanreader.ReaderListener;
+import java.util.*
 
-public class ReadDataOp extends AdvanOp {
-	
-	private String accessPassword;
-	private int bank;
-	private int address;
-	private int lenght;
-		
-	public String getAccessPassword() {
-		return accessPassword;
-	}
-
-	public void setAccessPassword(String accessPassword) {
-		this.accessPassword = accessPassword;
-	}
-
-	public int getBank() {
-		return bank;
-	}
-
-	public void setBank(int bank) {
-		this.bank = bank;
-	}
-
-	public int getAddress() {
-		return address;
-	}
-
-	public void setAddress(int address) {
-		this.address = address;
-	}
-
-	public int getLenght() {
-		return lenght;
-	}
-
-	public void setLenght(int lenght) {
-		this.lenght = lenght;
-	}
-
-	@Override
-	public void perform(Read read, AdvanReader reader, ReaderListener readerListener) {
-		try {
-			Device device = reader.getDevice();
-			int port = reader.getSettings().getPort();
-			String result = reader.readDataByEpc(device, port, epc, bank, address, lenght, accessPassword);		
-			read.setData(result);
-			readerListener.onReadData(read, 0, "readData");
-		} catch (Exception e) {
-			readerListener.onReadData(read, -1, e.getMessage());
-		}
-	}
-
+class Settings {
+    var host: String? = null
+    var port = 0
+    var antennas: IntArray = intArrayOf()
+    var txPower = doubleArrayOf(30.0, 30.0, 30.0, 30.0)
+    var rxSensitivity = doubleArrayOf(-70.0, -70.0, -70.0, -70.0)
+    var writePower = 31.5
+    var session = 1
+    var readerModeIndex = 0
+    var searchModeIndex = 0
+    override fun toString(): String {
+        val builder = StringBuilder()
+        builder.append("Settings [host=")
+        builder.append(host)
+        builder.append(", port=")
+        builder.append(port)
+        builder.append(", antennas=")
+        builder.append(Arrays.toString(antennas))
+        builder.append(", txPower=")
+        builder.append(Arrays.toString(txPower))
+        builder.append(", rxSensitivity=")
+        builder.append(Arrays.toString(rxSensitivity))
+        builder.append(", writePower=")
+        builder.append(writePower)
+        builder.append(", session=")
+        builder.append(session)
+        builder.append(", readerModeIndex=")
+        builder.append(readerModeIndex)
+        builder.append(", searchModeIndex=")
+        builder.append(searchModeIndex)
+        builder.append("]")
+        return builder.toString()
+    }
 }

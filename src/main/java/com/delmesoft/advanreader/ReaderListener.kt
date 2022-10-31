@@ -27,50 +27,14 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-package com.delmesoft.advanreader;
+package com.delmesoft.advanreader
 
-public abstract class ReaderListenerAdapter implements ReaderListener {
-
-	@Override
-	public void onWrite(Read read, int result, String message) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onLock(Read read, int result, String message) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onReadData(Read read, int result, String message) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onRead(Read read) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onGpi(int portNumber, boolean state) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onConnectionLost() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onEvent(String id, Object value) {
-		// TODO Auto-generated method stub
-		
-	}
-
+interface ReaderListener {
+    fun onWrite(read: Read?, result: Int, message: String?)
+    fun onLock(read: Read?, result: Int, message: String?)
+    fun onReadData(read: Read?, result: Int, message: String?)
+    fun onRead(read: Read?)
+    fun onGpi(portNumber: Int, state: Boolean)
+    fun onEvent(id: String?, value: Any?)
+    fun onConnectionLost()
 }
